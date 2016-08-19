@@ -1,24 +1,64 @@
-<!-- http://alignedleft.com/tutorials/d3/drawing-divs -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>D3 Test</title>
-        <script type="text/javascript" src="../d3/d3.v3.js"></script>
-    </head>
-    <body>
-        <script type="text/javascript">
-        	var dataset = [5, 10, 15, 20, 25];
-           	d3.select("body")
-           	.selectAll("p")
-           	.data(dataset)
-           	.enter()
-           	.append("div")
-           	.attr("class", "bar")
-           	.style("height", function(d) {
-           		return d + "px"
-           	});
-           	
-        </script>
-    </body>
-</html> 
+	<head>
+		<meta charset="utf-8">
+		<title>D3 Demo: 5 divs with data</title>
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<style type="text/css">
+		
+			div.bar {
+				display: inline-block;
+				width: 20px;
+				height: 75px;	/* Gets overriden by D3-assigned height below */
+				background-color: teal;
+				margin-right: 2px;
+			}
+			
+			.svgcolor {
+				fill: rgba(255, 0, 0, 0.1);
+			}
+		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//Variables
+			var w = 500;
+			var h = 50;
+			var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+			                  14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+			                  24, 18, 25, 9, 3];
+			var dataset2 = [5, 10, 15, 20, 25];
+			
+			//Bar charts with DIVs
+			d3.select("body").selectAll("div")
+				.data(dataset)
+				.enter()
+				.append("div")
+				.attr("class", "bar")
+				.style("height", function(d) {
+					return d*5 + "px";
+				});
+			
+			//SVG intro
+			var svg = d3.select("body").append("svg");
+			
+			svg.attr("width", w)
+			.attr("height", h);
+			
+			var circles = svg.selectAll("circle")
+				.data(dataset2)
+				.enter()
+				.append("circle");
+			
+			circles.attr("cx", function(d,i){
+				return (i*50)+25;
+			})
+			.attr("cy", h/2)
+			.attr("r", function(d){
+				return d;
+			});
+			
+		</script>
+	</body>
+</html>
