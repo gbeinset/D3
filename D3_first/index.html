@@ -21,8 +21,10 @@
 		</style>
 	</head>
 	<body>
+	
 		<script type="text/javascript">
 			//Variables
+			//Test to see if git is now detecting changes
 			var w = 500;
 			var h = 50;
 			var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
@@ -57,7 +59,13 @@
 			.attr("cy", h/2)
 			.attr("r", function(d){
 				return d;
+			})
+			.attr("fill", "yellow")
+			.attr("stroke", "orange")
+			.attr("stroke-width", function(d) {
+    		return d/2;
 			});
+			;
 			
 		</script>
 	</body>
